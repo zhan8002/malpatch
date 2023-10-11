@@ -6,7 +6,9 @@ We leverage the adversarial patch ([paper](https://arxiv.org/abs/1712.09665))—
 
 # Target Model
 MalConv: Malware detection by eating a whole exe ([paper](https://arxiv.org/abs/1710.09435))
+
 AvastNet: Deep convolutional malware classifiers can learn from raw executables and labels only
+
 Grayscale detectors: These detectors transform PE files into grayscale images and detecting malware using a trained DNN detector. All four trained DNN models that we repurpose for this research study, namely LeNet, ResNet-50, DenseNet-121, and SqueezeNet-v1.
 
 ![image](grayscale.png)
@@ -26,11 +28,13 @@ As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), poss
 `Padding` - Data that is not indexed in the section table will not be mapped into memory and executed, i.e., un-mapped data. In particular, the chunk of unused bytes, like debug information, at the end of PE files are un-mapped data and include appended bytes by the adversary.
 
 # Code
-MalPatch_binary contains the code that attacks the MalConv&AvastNet.
+`MalPatch_binary` contains the code that attacks the MalConv&AvastNet.
 
-MalPatch_img contains the code that attacks the Grayscale detectors.
+`MalPatch_img` contains the code that attacks the Grayscale detectors.
 
 In each Folder, there are two main attack.py file corresponding to white-box attack and black-box attack.
 
-To run MalPatch_binary, you need to replace this file in library ../secml/adv/attacks/evasion/ with c_attack_evasion.py in the folder.
+`API-validation` contains the functionality validation code as well as the API sequences and reports from ([Cuckoo Sandbox](https://cuckoosandbox.org/)).
+
+To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py with `c_attack_evasion.py` in the folder.
 
