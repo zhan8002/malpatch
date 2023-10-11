@@ -34,7 +34,7 @@ As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), poss
 
 In each Folder, there are two main attack.py file corresponding to white-box attack and black-box attack.
 
-`API-validation` contains the functionality validation code as well as the API sequences and reports from ([Cuckoo Sandbox](https://cuckoosandbox.org/)).
+`API-validation` contains the functionality validation code as well as the API sequences and reports from [Cuckoo Sandbox](https://cuckoosandbox.org/).
 
 To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py with `c_attack_evasion.py` in the folder.
 
