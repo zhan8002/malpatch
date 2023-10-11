@@ -33,13 +33,13 @@ As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), poss
 Pre-trained MalConv model [Pr-Malconv](https://github.com/pralab/secml_malware/blob/master/secml_malware/data/trained/pretrained_malconv.pth)
 
 # Code
-`MalPatch_binary` contains the code that attacks the MalConv&AvastNet.
+- `MalPatch_binary` contains the code that attacks the MalConv&AvastNet.
 
-`MalPatch_img` contains the code that attacks the Grayscale detectors.
+- `MalPatch_img` contains the code that attacks the Grayscale detectors.
 
 In each Folder, there are two main attack.py file corresponding to white-box attack and black-box attack.
 
-`API-validation` contains the functionality validation code as well as the API sequences and reports from [Cuckoo Sandbox](https://cuckoosandbox.org/).
+- `API-validation` contains the functionality validation code as well as the API sequences and reports from [Cuckoo Sandbox](https://cuckoosandbox.org/).
 
 **Note:** To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py` with `c_attack_evasion.py` in the folder.
 
