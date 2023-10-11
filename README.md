@@ -30,7 +30,7 @@ As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), poss
 # Dataset
 [Malware Detection PE-Based Analysis Using Deep Learning Algorithm Dataset](https://figshare.com/articles/dataset/Malware_Detection_PE-Based_Analysis_Using_Deep_Learning_Algorithm_Dataset/6635642) contains 8970 malware and 3140 benign binaries files. Malware files are divided into five families: Locker (300), Mediyes (1450), Winwebsec (4400), Zbot (2100), and Zeroaccess (690).
 
-Pre-trained [Malconv]((https://github.com/pralab/secml_malware/blob/master/secml_malware/data/trained/pretrained_malconv.pth))
+Pre-trained MalConv model [Pr-Malconv](https://github.com/pralab/secml_malware/blob/master/secml_malware/data/trained/pretrained_malconv.pth)
 
 # Code
 `MalPatch_binary` contains the code that attacks the MalConv&AvastNet.
