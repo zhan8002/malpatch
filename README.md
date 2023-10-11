@@ -36,5 +36,5 @@ In each Folder, there are two main attack.py file corresponding to white-box att
 
 `API-validation` contains the functionality validation code as well as the API sequences and reports from [Cuckoo Sandbox](https://cuckoosandbox.org/).
 
-**Note:** To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py with `c_attack_evasion.py` in the folder.
+**Note:** To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py` with `c_attack_evasion.py` in the folder.
 
