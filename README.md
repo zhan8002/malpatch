@@ -27,6 +27,11 @@ As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), poss
 
 `Padding` - Data that is not indexed in the section table will not be mapped into memory and executed, i.e., un-mapped data. In particular, the chunk of unused bytes, like debug information, at the end of PE files are un-mapped data and include appended bytes by the adversary.
 
+# Dataset
+[Malware Detection PE-Based Analysis Using Deep Learning Algorithm Dataset](https://figshare.com/articles/dataset/Malware_Detection_PE-Based_Analysis_Using_Deep_Learning_Algorithm_Dataset/6635642) contains 8970 malware and 3140 benign binaries files. Malware files are divided into five families: Locker (300), Mediyes (1450), Winwebsec (4400), Zbot (2100), and Zeroaccess (690).
+
+Pre-trained [Malconv]((https://github.com/pralab/secml_malware/blob/master/secml_malware/data/trained/pretrained_malconv.pth))
+
 # Code
 `MalPatch_binary` contains the code that attacks the MalConv&AvastNet.
 
