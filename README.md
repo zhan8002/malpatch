@@ -1,5 +1,5 @@
 # MalPatch
-> MalPatch: Evading DNN-Based Malware Detection With Adversarial Patches
+> MalPatch: Evading DNN-Based Malware Detection with Adversarial Patches
 
 # Background
 We leverage the adversarial patch ([paper](https://arxiv.org/abs/1712.09665))— a special type of adversarial attack without knowing the sample being modified when constructing the attack. In particular, we propose a new adversarial attack for malware analysis called MalPatch. It locates the nonfunctional part of malware for adversarial patch injection to protect executability while generating adversarial patches based on different strategies. The generated patch can be injected into any malware sample, fooling the detector into classifying it as benign.
