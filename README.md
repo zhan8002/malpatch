@@ -16,12 +16,12 @@ Grayscale detectors: These detectors transform PE files into grayscale images an
 # Framework
 The general framework of generating adversarial patches by MalPatch and performing universal adversarial attacks. In the attack preparation phase, (1) MalPatch replaces and appends a part of the bytes as the initialized patch, and then (2) optimizes the patch over a set of malware samples. (3) We use the optimized patch as the universal adversarial perturbation, and the patch can be directly applied in any malware to evade DNN-based detection, enabling universal query-free evasion attacks.
 
-![image](framework.pdf)
+![image](framework.png)
 
 # Patch Injection
 As reported by Anderson et al. ([paper](https://arxiv.org/abs/1801.08917)), possible and straightforward solutions to perform modifications include either changing bytes in part of the files that are not used or directly appending them at the end of the file. Therefore, we discuss two practical byte-level manipulations of Windows programs applied in this work, namely `Partial DOS` and `Padding`.
 
-![image](peformat.pdf)
+![image](peformat.png)
 
 `Partial DOS` - The first component in the DOS header is IMAGE DOS HEADER (64 byte-long), which contains metadata for loading the executable inside a DOS environment. The only two irrevocable fields in the DOS header are the magic number MZ and the 4-byte-long integer at offset 0x3c as a pointer to the actual header. Nevertheless, the remaining bytes can be used by the attacker to inject the adversarial payload.
 
@@ -43,3 +43,11 @@ In each Folder, there are two main attack.py file corresponding to white-box att
 
 **Note:** To run MalPatch_binary, you need to replace this file in library `../secml/adv/attacks/evasion/c_attack_evasion.py` with `c_attack_evasion.py` in the folder.
 
+# Functionality Validation
+we used the [PEfile](https://github.com/erocarrera/pefile) library to compile the binary during the generation of adversarial examples. If an error was reported, it was considered a failure. At the same time, we submitted the original malware sample and the corresponding adversarial variant to `Cuckoo Sandbox` for comparison.
+
+Once the sample was submitted to Cuckoo Sandbox, it was automatically executed in a sandbox environment. Cuckoo Sandbox simulates the execution of the program and records and monitors its behavior. After the analysis was complete, the sandbox generated a report containing information about the program’s API call sequences, created files, registry entries, network connections, and so on.
+
+![image](sandbox.png)
+
+Precisely, we determined whether the functionality was preserved by observing whether the PE file can be successfully executed in the sandbox environment, and then comparing the API sequences of the original sample and the adversarial example. we used the statistical information of the API sequences (histograms as well as average edit distances) to determine whether the API calls have changed significantly.
