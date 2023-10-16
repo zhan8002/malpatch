@@ -11,16 +11,27 @@ from secml_malware.attack.blackbox.ga.c_base_genetic_engine import CGeneticAlgor
 from secml_malware.models.malconv import MalConv, DNN_Net
 from secml_malware.models.c_classifier_end2end_malware import CClassifierEnd2EndMalware, End2EndModel
 
-net_choice = 'DNN_Net'
+# define target model
+net_choice = 'MalConv' # MalConv/AvastNet
 
-if net_choice != 'DNN_Net':
+if net_choice == 'MalConv':
+    ##################attack Malconv####################
+    net = MalConv()
+    net = CClassifierEnd2EndMalware(net)
+    net.load_pretrained_model() # Pr-MalConv
+
+    # if attack fine-tuned MalConv
+    net.load_pretrained_model('./secml_malware/data/trained/finetuned_malconv.pth')
+
+
+elif net_choice == 'AvastNet':
+    ###################attack AvastNet##################
     net = DNN_Net()
     net = CClassifierEnd2EndMalware(net)
     net.load_pretrained_model('./secml_malware/data/trained/dnn_pe.pth')
-###################################################
-elif net_choice == 'malconv':
-    net = CClassifierEnd2EndMalware(MalConv())
-    net.load_pretrained_model()
+
+
+#####################################################
 
 
 net = CEnd2EndWrapperPhi(net)
@@ -31,8 +42,8 @@ attack = CBlackBoxMalPatchProblem(net, population_size=30, iterations=100, is_de
 
 engine = CGeneticAlgorithm(attack)
 
-Train_folder = '/home/omnisky/zhan/secml_malware-master/dataset/val'
-Test_folder = '/home/omnisky/zhan/secml_malware-master/dataset/test'
+Train_folder = '' # dir of malware samples for generating adversarial patch
+Test_folder = '' # dir of malware samples for evaluating adversarial patch
 
 # load Train-set samples
 Train_X = []

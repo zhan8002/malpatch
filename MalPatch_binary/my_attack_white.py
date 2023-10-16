@@ -10,27 +10,34 @@ from secml_malware.models.malconv import MalConv, DNN_Net
 from secml_malware.models.c_classifier_end2end_malware import CClassifierEnd2EndMalware, End2EndModel
 from secml_malware.attack.whitebox.c_headerPlus_evasion import CHeaderPlusEvasion
 
-net_choice = 'DNN_Net'
 
-if net_choice != 'DNN_Net':
+
+# define target model
+net_choice = 'MalConv' # MalConv/AvastNet
+
+if net_choice == 'MalConv':
     ##################attack Malconv####################
     net = MalConv()
     net = CClassifierEnd2EndMalware(net)
-    net.load_pretrained_model()
+    net.load_pretrained_model() # Pr-MalConv
+
+    # if attack fine-tuned MalConv
+    net.load_pretrained_model('./secml_malware/data/trained/finetuned_malconv.pth')
 
     partial_dos = CHeaderPlusEvasion(net, random_init=False, iterations=10, header_and_padding=True, threshold=0.5, how_many=144, is_debug=False)
 
-elif net_choice == 'malconv':
-    ###################attack DNN_Net()##################
+elif net_choice == 'AvastNet':
+    ###################attack AvastNet##################
     net = DNN_Net()
     net = CClassifierEnd2EndMalware(net)
     net.load_pretrained_model('./secml_malware/data/trained/dnn_pe.pth')
 
     partial_dos = CHeaderPlusEvasion(net, random_init=False, iterations=10, header_and_padding=False, threshold=0.5, how_many=0, is_debug=False)
+
 #####################################################
 
-Train_folder = '/home/omnisky/zhan/secml_malware-master/dataset/test'
-Test_folder = '/home/omnisky/zhan/secml_malware-master/dataset/val'
+Train_folder = '' # dir of malware samples for generating adversarial patch
+Test_folder = '' # dir of malware samples for evaluating adversarial patch
 
 # load Train-set samples
 Train_X = []
@@ -45,7 +52,7 @@ for i, f in enumerate(os.listdir(Train_folder)):
     with open(path, "rb") as file_handle:
         code = file_handle.read()
 
-    if net.model.__class__.__name__ != 'DNN_Net':
+    if net.model.__class__.__name__ != 'AvastNet':
         x = End2EndModel.bytes_to_numpy(
             code, net.get_input_max_length(), 256, False
         )
@@ -78,7 +85,7 @@ for i, f in enumerate(os.listdir(Test_folder)):
         continue
     with open(path, "rb") as file_handle:
         code = file_handle.read()
-    if net.model.__class__.__name__ != 'DNN_Net':
+    if net.model.__class__.__name__ != 'AvastNet':
         x = End2EndModel.bytes_to_numpy(
             code, net.get_input_max_length(), 256, False
         )

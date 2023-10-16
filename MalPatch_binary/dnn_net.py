@@ -7,6 +7,7 @@ from secml.settings import SECML_PYTORCH_USE_CUDA
 
 use_cuda = torch.cuda.is_available() and SECML_PYTORCH_USE_CUDA
 
+# AvastNet model
 class DNN_Net(End2EndModel):
 	"""
 	Architecture implementation.
