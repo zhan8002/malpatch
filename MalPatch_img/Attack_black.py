@@ -25,8 +25,9 @@ parser.add_argument('--pad_row', type=float, default=10, help="row of the patch 
 parser.add_argument('--max_iteration', type=int, default=100, help="max iteration")
 parser.add_argument('--target', type=int, default=0, help="target label, 0:benign、1:malware")
 parser.add_argument('--epochs', type=int, default=3, help="total epoch")
-parser.add_argument('--data_train_dir', type=str, default='/home/ubuntu/zhan/dataset/figshare_img/test/val/', help="dir of the dataset")
-parser.add_argument('--data_test_dir', type=str, default='/home/ubuntu/zhan/dataset/figshare_img/val/', help="dir of the dataset")
+parser.add_argument('--data_train_dir', type=str, default='', help="dir of the dataset")
+parser.add_argument('--data_test_dir', type=str, default='', help="dir of the dataset")
+parser.add_argument('--model_path', type=str, default='', help="path of the target model")
 parser.add_argument('--log_dir', type=str, default='patch_den_log.csv', help='dir of the log')
 args = parser.parse_args()
 
@@ -34,7 +35,7 @@ CUDA_VISIBLE_DEVICES= 1
 device = torch.device('cuda:0')
 
 # Load the model
-model = torch.load('./cnn_model/densenet.pth', map_location='cuda:0')
+model = torch.load(args.model_path, map_location='cuda:0')
 model.eval()
 
 transform = transforms.Compose(

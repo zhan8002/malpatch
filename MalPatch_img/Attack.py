@@ -25,8 +25,9 @@ parser.add_argument('--lr', type=float, default=0.01, help="learning rate")
 parser.add_argument('--max_iteration', type=int, default=100, help="max iteration")
 parser.add_argument('--target', type=int, default=0, help="target label")
 parser.add_argument('--epochs', type=int, default=1, help="total epoch")
-parser.add_argument('--data_train_dir', type=str, default='/home/ubuntu/zhan/dataset/figshare_img/val/', help="dir of the dataset")
-parser.add_argument('--data_test_dir', type=str, default='/home/ubuntu/zhan/dataset/figshare_img/test/val/', help="dir of the dataset")
+parser.add_argument('--data_train_dir', type=str, default='', help="dir of the dataset")
+parser.add_argument('--data_test_dir', type=str, default='', help="dir of the dataset")
+parser.add_argument('--model_path', type=str, default='', help="path of the target model")
 args = parser.parse_args()
 
 
@@ -63,7 +64,7 @@ def patch_attack(image, pad_trans, mask, target, probability_threshold, model, l
 device = torch.device('cuda:0')
 
 # Load the model
-model = torch.load('./cnn_model/densenet.pth', map_location='cuda:0')
+model = torch.load(args.model_path, map_location='cuda:0')
 model.eval()
 
 transform = transforms.Compose(

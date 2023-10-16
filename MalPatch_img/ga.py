@@ -54,7 +54,7 @@ def ga_padding(image, net, et_pop, padding_row, target_class):
     obj_trace = np.zeros((MAXGEN, 2))  # 定义目标函数值记录器
     var_trace = np.zeros((MAXGEN, Lind))  # 染色体记录器，记录历代最优个体的染色体
     """=========================开始遗传算法进化========================"""
-    imagepath = '/home/ubuntu/zhan/dataset/figshare_img/train/benign'
+    imagepath = '' # dir of the benign samples
     pathdir = os.listdir(imagepath)
     Chrom = np.zeros((Nind, padding_count))
 
